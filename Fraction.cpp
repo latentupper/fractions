@@ -79,14 +79,6 @@ void Fraction::MakeProper() {
     return q;
 }
 
-void Fraction::ChangeP(int pp) {
-    p = pp;
-}
-
-void Fraction::ChangeQ(int qq) {
-    q = qq;
-}
-
 //операции с дробями
 
 Fraction Fraction::operator+(const Fraction& b) const
@@ -135,9 +127,10 @@ Fraction Fraction::operator-() const
 
 // операторы приравнивания
 
-Fraction& Fraction::operator=(const Fraction& b)
+void Fraction::operator=(const Fraction& b)
 {
-    return const_cast<Fraction &>(b);
+    p = b.p;
+    q = b.q;
 }
 
 void Fraction::operator+=(const Fraction& b)
@@ -330,4 +323,12 @@ std::ostream& operator<<(std::ostream& ostr, const Fraction& s)
 {
     ostr << s.getP() << "/" << s.getQ();
     return ostr;
+}
+
+void Fraction::ChangeP(int pp) {
+    p = pp;
+}
+
+void Fraction::ChangeQ(int qq) {
+    q = qq;
 }

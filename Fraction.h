@@ -16,8 +16,6 @@ public:
     void MakeProper(); //приведение дроби к правильной
     [[nodiscard]] int getP() const;
     [[nodiscard]] int getQ() const;
-    void ChangeP(int pp);
-    void ChangeQ(int qq);
 
     //операции с дробями
     Fraction operator+(const Fraction& b) const;
@@ -28,7 +26,7 @@ public:
     Fraction operator-() const; //унарный минус
 
     //операторы приравнивания
-    Fraction& operator=(const Fraction& b);
+    void operator=(const Fraction& b);
     void operator+=(const Fraction& b);
     void operator-=(const Fraction& b);
     void operator*=(const Fraction& b);
@@ -47,18 +45,18 @@ public:
 
     explicit operator double() const; //оператор приведения к типу double
 
+    //операторы типа ЧИСЛО <оператор> ДРОБЬ
+    friend Fraction operator+(int a, const Fraction& b);
+    friend Fraction operator-(int a, const Fraction& b);
+    friend Fraction operator*(int a, const Fraction& b);
+    friend Fraction operator/(int a, const Fraction& b);
+    friend std::istream& operator>>(std::istream& istr, Fraction& s);
+    friend std::ostream& operator<<(std::ostream& ostr, const Fraction& s);
+
 private:
     int p; //числитель, несет в себе знак
     int q; //знаменатель, только положителен
+    void ChangeP(int pp);
+    void ChangeQ(int qq);
 };
-
-//операторы типа ЧИСЛО <оператор> ДРОБЬ
-Fraction operator+(int a, const Fraction& b);
-Fraction operator-(int a, const Fraction& b);
-Fraction operator*(int a, const Fraction& b);
-Fraction operator/(int a, const Fraction& b);
-
-std::istream& operator>>(std::istream& istr, Fraction& s);
-std::ostream& operator<<(std::ostream& ostr, const Fraction& s);
-
 #endif //WEEK2_FRACTION_H
