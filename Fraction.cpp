@@ -6,11 +6,7 @@
 #include <iostream>
 #include <numeric>
 
-Fraction::Fraction()
-{
-    p = 0;
-    q = 1;
-}
+Fraction::Fraction(): p(0), q(1) {}
 
 Fraction::Fraction(double a)
 {
@@ -59,11 +55,7 @@ Fraction::Fraction(int pp, int qq)
 }
 
 //"катающий" конструктор
-Fraction::Fraction(const Fraction& orig)
-{
-    p = orig.p;
-    q = orig.q;
-}
+Fraction::Fraction(const Fraction& orig): p(orig.p), q(orig.q) {}
 
 //приведение дроби к правильной
 void Fraction::MakeProper() {
